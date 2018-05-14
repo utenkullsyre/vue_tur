@@ -9,7 +9,7 @@
       <div id="toolbox" v-if="verktoyAktiv">
           <div class="knapperad left">
             <button type="button" @click="test"><i class="material-icons">tab</i></button>
-            <button type="button"><i class="material-icons">aspect_ratio</i></button>
+            <!-- <button type="button"><i class="material-icons">aspect_ratio</i></button> -->
             <!-- <button type="button"><i class="material-icons">wallpaper</i></button> -->
             <button type="button" name="undo" @click="finnMeg"><i class="material-icons">gps_fixed</i></button>
 
@@ -18,6 +18,7 @@
           <div id="zoom">
             <button type="button" name="zoom-in" @click="zoom('inn')"><i class="material-icons">add</i></button>
             <button type="button" name="zoom-out" @click="zoom"><i class="material-icons">remove</i></button>
+            <button type="button" id="kompass" ></button>
           </div>
         </div>
       </div>

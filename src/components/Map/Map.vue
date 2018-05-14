@@ -98,6 +98,7 @@ export default {
       'esri/layers/FeatureLayer',
       'esri/layers/MapImageLayer',
       'esri/Basemap',
+      'esri/widgets/Compass',
       'esri/layers/ElevationLayer',
       'esri/views/SceneView',
       'esri/Graphic',
@@ -117,7 +118,7 @@ export default {
       url: 'https://js.arcgis.com/4.7/'
     }).
       then(([
-             Map, TileLayer, FeatureLayer, MapImageLayer, Basemap, ElevationLayer,
+             Map, TileLayer, FeatureLayer, MapImageLayer, Basemap, Compass, ElevationLayer,
              SceneView, Graphic, Viewpoint, Point, Polygon,
              Circle, GraphicsLayer, PictureMarkerSymbol, on,
              esriConfig, promiseUtils, SketchViewModel, Extent
@@ -128,23 +129,35 @@ export default {
        esriConfig.request.corsEnabledServers.push("www.vegvesen.no");
         // create map with the given options at a DOM node w/ id 'mapNode'
 
-        let nvdbBasemap = new TileLayer({
-          url: 'https://nvdbcache.geodataonline.no/arcgis/rest/services/Trafikkportalen/GeocacheTrafikkJPG/MapServer',
-          id: 'NVDB-trafikk',
-          visible: false
-        })
+        // Create elevation layers
+        let bakke = new ElevationLayer({
+          url: 'https://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheTerreng/ImageServer'
+        });
+
         let bilder = new TileLayer({
-          url: 'https://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheBilder/MapServer',
-          id: 'Bilder',
-          visible: true
-        })
+            url: 'https://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheBilder/MapServer',
+            id: 'Flyfoto',
+            visible: true
+          });
+
+        let graatone = new TileLayer({
+            url: 'https://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheGraatone/MapServer',
+            id: 'Gråtone',
+            visible: false
+          });
+
+        let landskap = new TileLayer({
+              url: 'https://services.geodataonline.no/arcgis/rest/services/Geocache_UTM33_EUREF89/GeocacheLandskap/MapServer',
+              id: 'Landskap',
+              visible: false
+            });
 
         let tempGrafikk = new GraphicsLayer({
           id: "midlertidig grafikk",
           visible: true
         })
 
-        let baseLayers = [bilder, nvdbBasemap]
+        let baseLayers = [bilder, graatone, landskap]
         let mapLayers = [tempGrafikk]
 
         let bakgrunnsKart = new Basemap({
@@ -165,7 +178,10 @@ export default {
 
         let map = new Map({
           basemap: bakgrunnsKart,
-          layers: mapLayers
+          layers: mapLayers,
+          ground: {
+            layers: [bakke]
+          }
         });
 
         let view = new SceneView({
@@ -173,6 +189,11 @@ export default {
           map: map,
           extent: extent
         });
+
+        let compass = new Compass({
+          view: view,
+          container: document.querySelector('#kompass')
+        })
 
         view.center = [679740.6418199595, 7564951.3128187675];
         view.zoom = 5;
@@ -190,7 +211,7 @@ export default {
             view.focus();
           })
           this.$emit('kartLastet', {view: view, lag: mapLayers});
-          // console.log('Map loaded', view);
+          console.log('Map loaded', view);
           // console.log(sketch);
           this.kartLastet = true
           this.kartView = view;
