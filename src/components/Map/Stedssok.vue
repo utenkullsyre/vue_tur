@@ -203,15 +203,16 @@ export default {
     left: 10px;
     top: 51px;
     /* padding: 5px 3px 5px 3px; */
-    border: 2px solid #ecb140;
+    border: 2px solid #a6aaa4;
     width: 440px;
-    background-color: rgb(255, 233, 212);
+    background-color: #c6cfc1;
     box-sizing: border-box;
     max-height: 200px;
     border-radius: 5px;
     user-select: none;
     cursor: pointer;
     overflow-y: scroll;
+
   }
 
   #searchResult .closebtn{
@@ -236,11 +237,12 @@ export default {
     text-align: left;
     font-size: 1.2em;
     padding: 5px 0 5px 5px;
-    margin:0
+    margin:0;
+    transition: all 0.2s;
   }
 
   #searchResult ul li:hover{
-    background-color: rgb(242, 189, 138);
+    background-color: #dddddd;
   }
 
 

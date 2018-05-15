@@ -34,6 +34,18 @@ export default {
       } else {
         return false
       }
+    },
+    kartlag() {
+      return this.$store.state.kart.kartlag
+    },
+    bakgrunnslag() {
+      return this.$store.state.kart.bakgrunnslag
+    },
+    kartview() {
+      return this.$store.state.kart.view
+    },
+    kartobjekt() {
+      return this.$store.state.kart.map
     }
   },
   components: {
@@ -207,6 +219,12 @@ export default {
         view.ui.remove('compass', 'top-right')
 
         view.when(() => {
+          // if (!kartlag) {
+          //   this.$store.commit('setKartlag', mapLayers)
+          // }
+          // if (!bakgrunnslag) {
+          //   this.$store.commit('setBakgrunnslag', baseLayers)
+          // }
           view.on("click", () => {
             view.focus();
           })

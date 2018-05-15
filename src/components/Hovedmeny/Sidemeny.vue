@@ -3,27 +3,57 @@
     <nav id="sidenav" v-if="navAapen">
       <header>
         <h1 id="title">Turur</h1>
-        <i id="lukknav" class="material-icons" @click="lukkNav">close</i>
+        <div class="ikoner">
+          <i id="lukknav" class="material-icons" @click="lukkNav" v-if="!gruppeAktiv">close</i>
+          <i id="lukkundergruppe" class="material-icons" @click="lukkUndergruppe" v-if="gruppeAktiv">keyboard_arrow_left</i>
+        </div>
       </header>
+      <app-grupper></app-grupper>
+
+        <!-- bakgrunnsKart -->
+
+        <!-- Kartlag -->
+        <!-- Tegnforklaring -->
+        <!-- Verktøy -->
+        <!-- om -->
     </nav>
   </transition>
 </template>
 
 <script>
+import Grupper from './Grupper.vue'
+
 export default {
   data() {
     return {
-      helvete: true
+      helvete: true,
+      undergruppeOpen: false
     }
+  },
+  components: {
+    appGrupper: Grupper
   },
   computed: {
     navAapen() {
-      return this.$store.state.sidenavOpen
+      return this.$store.state.sidenav.sidenavOpen
+    },
+    gruppeAktiv() {
+      return this.$store.getters.aapenUndergruppe
+    },
+    synligeGrupper() {
+      return this.$store.state.sidenav.synligeGrupper
     }
   },
   methods: {
     lukkNav() {
       this.$store.commit('alterSidenav', false)
+    },
+    lukkUndergruppe() {
+      let synligegrupper = ['Bakgrunnskart', 'Kartlag', 'Tegnforklaring', 'Verktøy', 'Om']
+      console.log('Før klikk', this.synligeGrupper);
+      this.$store.commit('setAktivGruppe','')
+      this.$store.commit('setSynligegrupper', synligegrupper)
+      console.log('Etter klikk', this.synligeGrupper);
     }
   }
 }
@@ -50,13 +80,23 @@ export default {
     justify-content: space-between;
     margin-bottom: 20px;
   }
+  .ikoner i{
+    margin: 8px;
+    position: relative;
+    user-select: none;
+  }
+
+  #lukkundergruppe{
+    font-size: 55px;
+    top:-8px;
+    right:-9px;
+  }
 
   #lukknav {
-    margin: 8px;
     cursor: pointer;
-    font-size: 35px;
     font-weight: bold;
-    user-select: none;
+    font-size: 35px;
+    /* top: -5px; */
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
   }
 

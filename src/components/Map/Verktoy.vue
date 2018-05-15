@@ -131,19 +131,19 @@ export default {
 }
 
 button{
-  color: rgb(238, 142, 0);
+  color: rgb(133, 133, 133);
   margin: 0 2px;
   height: 40px;
   width: 40px;
-  border: 2px solid #ecb140;
+  border: 2px solid #a6aaa4;
   border-radius: 4px;
-  background-color: rgb(255, 233, 212);
+  background-color: #c6cfc1;
   transition: background-color 0.1s ease-in;
   cursor: pointer;
 }
 
 button:hover , .aktiv{
-  background-color: #f9c667
+  background-color: #d4d5d3
 }
 
 button:active {
