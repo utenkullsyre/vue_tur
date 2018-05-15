@@ -3,7 +3,7 @@
   <div id="sokInfo" >
     <!-- Stedssøk input -->
     <div id="search">
-      <i class="material-icons">menu</i>
+      <i class="material-icons" @click="aapneSidenav">menu</i>
       <input type="text" placeholder="Søk på stedsnavn" v-model="stedsNavn" @keyup="stedSok">
       <!-- <input type="text" placeholder="Søk på stedsnavn" :value="stedsNavn" @keyup="stedSok"> -->
     </div>
@@ -36,9 +36,15 @@ export default {
       } else {
         return false
       }
+    },
+    navState() {
+      return this.$store.state.sidenavOpen
     }
   },
   methods: {
+    aapneSidenav() {
+      this.$store.commit('alterSidenav', !this.navState)
+    },
     resetSok() {
       this.stedsNavn = '';
       this.valgtSted = true;
@@ -103,12 +109,13 @@ export default {
     top:0;
     left:0;
     height: 40px;
-    border: 2px solid #ecb140;
+    border: 2px solid #a6aaa4;
     border-radius: 4px;
-    background-color: rgb(255, 233, 212);
+    background-color: #c6cfc1;
     overflow: hidden;
     padding-left: 5px;
     transition: width 0.2s;
+    z-index: 3;
   }
 
   #search i {
@@ -119,6 +126,7 @@ export default {
     position: relative;
     left:0px;
     box-sizing: border-box;
+    cursor: pointer;
   }
 
   #search i:hover {
@@ -155,6 +163,7 @@ export default {
   input[type=text] {
     position: relative;
     border: none;
+    color: white;
     top:0;
     /* left:30px; */
     width: 30px;
@@ -162,8 +171,8 @@ export default {
     box-sizing: border-box;
     font-size: 1.5em;
     font-family: 'Rambla', sans-serif;
-    background-color: rgb(255, 233, 212);
-    background-image: url(../../assets/searchicon.png);
+    background-color: #c6cfc1;
+    background-image: url(../../assets/baseline-search-24px.svg);
     background-position: 10px 9px;
     background-repeat: no-repeat;
     padding: 5px 0px 5px 40px;

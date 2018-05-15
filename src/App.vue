@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <app-map></app-map>
+    <app-nav></app-nav>
   </div>
 </template>
 
 <script>
 import Map from './components/Map/Map.vue'
+import Sidenav from './components/Hovedmeny/Sidemeny.vue'
 
 export default {
   name: 'app',
   components: {
-    appMap: Map
+    appMap: Map,
+    appNav: Sidenav
   },
   data () {
     return {
