@@ -148,6 +148,7 @@ export default {
       opacity: 0;
     }
 
+
   @media (max-width: 480px) {
     #sidenav{
       width: 100%;

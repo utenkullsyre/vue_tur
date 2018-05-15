@@ -59,4 +59,19 @@ export default {
     width: 100%;
     font-weight: bold;
   }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.9em;
+    width: 100%;
+  }
+  li{
+    padding: 3px 15px;
+    width: 100%;
+    transition: all 0.2s;
+  }
+  li:hover {
+    background-color: rgb(217, 217, 217)
+  }
 </style>
