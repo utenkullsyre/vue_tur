@@ -1,7 +1,7 @@
 <template lang="html">
-  <nav id="bakgrunnskart" :data-id=gruppenavn class="gruppe-el" v-if="gruppeSynlig">
-    <div class="tittel" :data-id=gruppenavn :class="{aapenNav:gruppeAktiv}" @click="velgGruppe">
-      <span class="gruppe-el-tittel" :data-id=gruppenavn>Bakgrunnskart: </span><span id="valgt-bakgrunn" data-id="Bakgrunnskart"> {{ valgtBakgrunn }}</span>
+  <nav id="bakgrunnskart" :data-id='gruppenavn' class="gruppe-el" v-if="gruppeSynlig">
+    <div class="tittel" :data-id='gruppenavn' :class="{aapenNav:gruppeAktiv}" @click="velgGruppe">
+      <span class="gruppe-el-tittel" :data-id='gruppenavn'>Bakgrunnskart: </span><span id="valgt-bakgrunn" data-id="Bakgrunnskart"> {{ valgtBakgrunn }}</span>
     </div>
      <ul v-if="gruppeAktiv">
        <li data-id="landskap">Landkart</li>

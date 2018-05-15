@@ -2,12 +2,16 @@
   <div class="">
     <section-bakgrunnskart></section-bakgrunnskart>
     <section-kartlag></section-kartlag>
+    <section-verktoy></section-verktoy>
+    <section-om></section-om>
   </div>
 </template>
 
 <script>
 import Bakgrunnskart from './Bakgrunnskart.vue'
 import Kartlag from './Kartlag.vue'
+import Verktoy from './Verktoymeny.vue'
+import Om from './Om.vue'
 
 export default {
 
@@ -18,7 +22,9 @@ export default {
   },
   components: {
     sectionBakgrunnskart: Bakgrunnskart,
-    sectionKartlag: Kartlag
+    sectionKartlag: Kartlag,
+    sectionVerktoy: Verktoy,
+    sectionOm: Om
   }
 }
 </script>

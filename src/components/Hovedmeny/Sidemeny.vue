@@ -87,9 +87,9 @@ export default {
   }
 
   #lukkundergruppe{
-    font-size: 55px;
-    top:-8px;
-    right:-9px;
+    font-size:35px;
+    /* top:-8px; */
+    /* right:-9px; */
   }
 
   #lukknav {

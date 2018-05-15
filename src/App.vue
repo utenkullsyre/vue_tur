@@ -36,7 +36,7 @@ h1, h2 {
   font-weight: normal;
 }
 
-ul {
+/* ul {
   list-style-type: none;
   padding: 0;
 }
@@ -44,7 +44,7 @@ ul {
 li {
   display: inline-block;
   margin: 0 10px;
-}
+} */
 
 a {
   color: #42b983;
