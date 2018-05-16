@@ -164,13 +164,39 @@ export default {
               visible: false
             });
 
+        let bratthet = new MapImageLayer({
+          url: 'https://wms3.nve.no/map/rest/services/Bratthet/MapServer',
+          id: 'Helling',
+          sublayers: [
+              {
+                id: 0,
+                visible: true,
+                opacity: .5,
+                legendEnabled: true,
+              }
+            ],
+            visible: false
+          });
+
+        let skredHendelser = new MapImageLayer({
+          url: 'https://wms3.nve.no/map/rest/services/SkredHendelser/MapServer',
+          id: 'Skredhendelser',
+          sublayers: [
+              {
+                id: 1,
+                visible: false,
+                legendEnabled: true,
+              }
+            ]
+          });
+
         let tempGrafikk = new GraphicsLayer({
-          id: "midlertidig grafikk",
+          id: "Hjelpegrafikk",
           visible: true
         })
 
         let baseLayers = [bilder, graatone, landskap]
-        let mapLayers = [tempGrafikk]
+        let mapLayers = [tempGrafikk, skredHendelser, bratthet]
 
         let bakgrunnsKart = new Basemap({
           baseLayers: baseLayers,
@@ -219,12 +245,12 @@ export default {
         view.ui.remove('compass', 'top-right')
 
         view.when(() => {
-          // if (!kartlag) {
-          //   this.$store.commit('setKartlag', mapLayers)
-          // }
-          // if (!bakgrunnslag) {
-          //   this.$store.commit('setBakgrunnslag', baseLayers)
-          // }
+          if (!this.kartlag) {
+            this.$store.commit('setKartlag', mapLayers)
+          }
+          if (!this.bakgrunnslag) {
+            this.$store.commit('setBakgrunnslag', baseLayers)
+          }
           view.on("click", () => {
             view.focus();
           })

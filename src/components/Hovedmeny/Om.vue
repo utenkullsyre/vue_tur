@@ -69,4 +69,8 @@ export default {
   .tittel span{
     user-select: none;
   }
+
+  h3, p {
+    padding:0 15px;
+  }
 </style>

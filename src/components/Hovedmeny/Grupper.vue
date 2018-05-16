@@ -40,6 +40,7 @@ export default {
     transition: all 0.15s;
     cursor: pointer;
     overflow: hidden;
+    user-select: none;
   }
   .tittel {
     width: 100%;
